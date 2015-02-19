@@ -559,7 +559,7 @@ wrk2(:,:,:)=cvol(:,:,:)
             CALL iom_put( "wrk4", wrk4(:,:,:)  )  
       ENDIF
 
-      !IF (ln_diatrc) THEN
+      IF (ln_diatrc) THEN
          IF (lk_iomput) THEN
             CALL iom_put(      "expkT"  ,        expkT(:,:,:)*tmask(:,:,:) )
             CALL iom_put(   "irr_inst"  ,     irr_inst(:,:,:)*tmask(:,:,:) )
@@ -621,7 +621,8 @@ wrk2(:,:,:)=cvol(:,:,:)
            trc3d( :,:,:,jp_bling0_3d+25 ) =   feprime(:,:,:)*tmask(:,:,:)*1.d6
            trc3d( :,:,:,jp_bling0_3d+26 ) =kfe_eq_lig(:,:,:)*tmask(:,:,:)
          ENDIF
-
+      ENDIF
+      
       CALL wrk_dealloc( jpi, jpj, jpk, expkT, irr_inst, irr_mix, irrk, pc_m, mu )
       CALL wrk_dealloc( jpi, jpj, jpk, def_fe, feprime, kfe_eq_lig, fpofe )
       CALL wrk_dealloc( jpi, jpj, jpk, jpop, fpop, zremin )
